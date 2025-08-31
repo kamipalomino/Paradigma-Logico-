@@ -1,4 +1,5 @@
 %Saltos%
+
 %En una competencia de saltos, cada competidor puede hacer hasta 5 saltos; a cada salto se le asigna un puntaje de 0 a 10. Se define el predicado puntajes que relaciona cada competidor con los puntajes de sus saltos, p.ej.
 persona(Persona) :- puntajes(Persona, _).
 
@@ -29,15 +30,18 @@ esta_descalificado(Persona) :-
     Cantidad > 5.
 %3. Si un competidor clasifica a la final. Un competidor clasifica a la final si la suma de sus puntajes es mayor o ual a 28, o si tiene dos saltos de 8 o más puntos.
 competidor_clasificado(Persona) :-
-    persona(puntajes(Persona, _)),
+    persona(Persona),
     puntajes(Persona, Saltos),
     sum_list(Saltos, Total),
-    Total > 28 .
+    not(esta_descalificado(Persona)),
+    Total >= 28.
+    
     
 competidor_clasificado(Persona) :-
-    persona(puntajes(Persona, _)),
+    persona(Persona),
+    not(esta_descalificado(Persona)),
     puntajes(Persona, Saltos),
     findall(No >= 8, (member(No, Saltos)), Cant),
     length(Cant, Total), 
-    Total > 2 .
+    Total >= 2 .
 
