@@ -32,6 +32,8 @@ test("Relaciona un vuelo con el tiempo que lleva en total", nondet) :-  tiempoTo
 
 tiempoTotalVuelo(Codigo, Tiempo):-
     vuelo(Codigo, _, [escala(_, TiempoEspera), tramo(TiempoVuelo), escala(_, TiempoEspera2)]),
+    findall(escala(_, TiempoEspera), Goal, Bag)
+    
     sum_list(vuelo(_, _, [escala(_, TiempoEspera)]), TiempoEscala),
     sum_list(vuelo(_, _, [tramo(TiempoVuelo)]), TiempoEscala2),
    % sum_list(tramo(TiempoVuelo), TiempoVuelo2),
