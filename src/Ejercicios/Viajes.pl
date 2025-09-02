@@ -30,6 +30,14 @@ vuelo(DSM3450, 75, [escala(santiagoDeChile,0), tramo(1),escala(buenosAires,2), t
 test("Relaciona un vuelo con el tiempo que lleva en total", nondet) :-  tiempoTotalVuelo(Vuelo, Tiempo).
 :- end_tests(tiempoTotalVuelo).
 
+tiempoTotalVuelo(Codigo, Tiempo):-
+    vuelo(Codigo, _, [escala(_, TiempoEspera), tramo(TiempoVuelo), escala(_, TiempoEspera2)]),
+    sum_list(vuelo(_, _, [escala(_, TiempoEspera)]), TiempoEscala),
+    sum_list(vuelo(_, _, [tramo(TiempoVuelo)]), TiempoEscala2),
+   % sum_list(tramo(TiempoVuelo), TiempoVuelo2),
+    Tiempo is TiempoEscala2 + TiempoEscala.
+
+
 %2. **escalaAburrida/2** : Relaciona un vuelo con cada una de sus escalas aburridas; una escala es aburrida si hay que esperar mas de 3 horas.
 :- begin_tests(escalaAburrida).
 test("escala es aburrida si hay que esperar mas de 3 horas", nondet) :-  escalaAburrida(Vuelo, Escala).
