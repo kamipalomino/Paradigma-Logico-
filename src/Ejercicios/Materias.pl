@@ -16,18 +16,21 @@ anotado(b, paradigma, 25).
 anotado(c, paradigma, 25).
 anotado(a, sisop, 19).
 
-% anotado(A, M,F), anotado(B, M,F), A \= B
+seAnotaron(M, F) :-
+    anotado(A, M,F), anotado(B, M,F), A \= B.
+    
+    
 ultimaFecha(Materia, Fecha) :-
     fecha(Materia, Fecha),
     \+ ( fecha(Materia, OtraFecha),
          OtraFecha > Fecha ).
 
 
-ultimaFecha2(Materia, Fecha):-
-    fecha(Materia, Dia),
-    fecha(Materia, Fecha), 
-    forall((fecha(Materia, Dia)), (Fecha \= Dia, Fecha > Dia)),
-    ultimaFecha2(Materia, Fecha).
+% ultimaFecha2(Materia, Fecha):-
+  %  fecha(Materia, Dia),
+   % fecha(Materia, Fecha), 
+   % forall((fecha(Materia, Dia)), (Fecha \= Dia, Fecha > Dia)),
+  %  ultimaFecha2(Materia, Fecha).
   
 % ultimaFecha2(Materia, Fecha):- fecha(Materia, Fecha), Fecha == 31.
 
@@ -42,3 +45,7 @@ ultimaFecha2(Materia, Fecha):-
     test("última fecha de fisica es 17", nondet) :- 
         ultimaFecha(Materia, 17), assertion(Materia == fisica).
 :- end_tests(ultimaFecha).
+
+:- begin_tests(seAnotaron).
+    test("lse anotaron todos el 25", nondet) :-  seAnotaron(paradigma,25).
+:- end_tests(seAnotaron).
