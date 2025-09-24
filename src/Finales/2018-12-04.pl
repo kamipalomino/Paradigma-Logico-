@@ -14,4 +14,7 @@ recibe(Pais, Pais2):-
     acuerdo(Pais,_, M),
     acuerdo(_,Pais2,M), 
     acuerdo(_,_, M).
-    
+
+% not(acuerdo(eeuu,china,armas)).
+
+ 
