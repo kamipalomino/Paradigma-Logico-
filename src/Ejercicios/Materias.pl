@@ -29,8 +29,8 @@ ultimaFecha(Materia, Fecha) :-
 % ultimaFecha2(Materia, Fecha):-
   %  fecha(Materia, Dia),
    % fecha(Materia, Fecha), 
-   % forall((fecha(Materia, Dia)), (Fecha \= Dia, Fecha > Dia)),
-  %  ultimaFecha2(Materia, Fecha).
+   % forall((fecha(Materia, Dia)), (Fecha \= Dia, Dia > Fecha)),
+  %  ultimaFecha2(Materia, Dia).
   
 % ultimaFecha2(Materia, Fecha):- fecha(Materia, Fecha), Fecha == 31.
 
